@@ -1,0 +1,50 @@
+#include<iostream>
+#include<windows.h>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	int n = 0;
+
+	cout << "Будь ласка введіть розмір масиву: ";
+	cin >> n;
+
+	int* arr = new int[n];
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << i + 1 << " - елемент масиву: ";
+		cin >> arr[i];
+	}
+
+	int maxLength = 1, currentLength = 1;
+
+	for (int i = 1; i < n; i++)
+	{
+		if (arr[i] > arr[i - 1])
+		{
+			currentLength++;
+		}
+		else
+		{
+			if (currentLength > maxLength)
+			{
+				maxLength = currentLength;
+			}
+			currentLength = 1;
+		}
+	}
+	if (currentLength > maxLength)
+	{
+		maxLength = currentLength;
+	}
+	cout << "Довжина найдовшого зростаючого підмасиву: " << maxLength;
+
+	delete[] arr;
+	return 0;
+}
